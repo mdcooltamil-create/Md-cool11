@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Shop - Order Page</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; margin: 0; }
+        .page { display: none; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 380px; margin: 20px auto; animation: fadeIn 0.5s; }
+        #page1 { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { color: #333; margin-bottom: 10px; }
+        p { color: #666; font-size: 14px; }
+
+        .input-group { text-align: left; margin-bottom: 15px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: 0.3s; }
+        input:focus { border-color: #28a745; outline: none; box-shadow: 0 0 5px rgba(40,167,69,0.2); }
+
+        button, .whatsapp-btn { width: 100%; padding: 14px; background-color: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; display: block; text-decoration: none; }
+        button:hover { background-color: #218838; }
+        
+        .whatsapp-btn { background-color: #25D366; margin-top: 20px; }
+        .whatsapp-btn:hover { background-color: #128C7E; }
+
+        .price-breakup { text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 15px; border: 1px solid #eee; }
+        .important-note { color: #d9534f; font-weight: bold; font-size: 13px; margin: 15px 0; border: 1px dashed #d9534f; padding: 10px; border-radius: 5px; background: #fff5f5; }
+        
+        .qr-container { margin: 20px 0; border: 2px solid #28a745; padding: 10px; border-radius: 10px; background: #fff; }
+        .qr-container img { width: 220px; height: auto; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="page">
+        <div style="font-size: 50px;">🛍️</div>
+        <h2>Welcome to Our Shop</h2>
+        <p>Best Products at Low Price</p>
+        <button onclick="showPage('page2')">View Product</button>
+    </div>
+
+    <div id="page2" class="page">
+        <div style="font-size: 50px;">📦</div>
+        <h2>Product Details</h2>
+        <p><strong>Item:</strong> Special MAR MOUTH Cill</p>
+        <p><strong>Price:</strong> ₹50 per piece</p>
+        <p>+ Courier Charges ₹100</p>
+        <button onclick="showPage('page3')">Order Now</button>
+    </div>
+
+    <div id="page3" class="page">
+        <div style="font-size: 30px;">🧾</div>
+        <h2>Enter Details</h2>
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="address" placeholder="Full Address">
+        <input type="text" id="landmark" placeholder="Landmark">
+        <input type="number" id="pincode" placeholder="Pincode">
+        <input type="text" id="state" placeholder="State">
+        <input type="number" id="mobile" placeholder="Mobile Number">
+        <input type="number" id="alt_mobile" placeholder="Alternative Number">
+        <input type="number" id="pcs" placeholder="How many pcs" value="1">
+        
+        <button onclick="goToSummary()">Next to Payment</button>
+    </div>
+
+    <div id="page4" class="page">
+        <div style="font-size: 30px;">💳</div>
+        <h2>Payment Details</h2>
+        
+        <div class="price-breakup">
+            <div style="display:flex; justify-content: space-between; margin-bottom: 5px;">
+                <span>Product (₹50 x <span id="displayQty">0</span>):</span> <span id="prodPrice">₹0</span>
+            </div>
+            <div style="display:flex; justify-content: space-between; color: #555; margin-bottom: 5px;">
+                <span>Courier Charges:</span> <span>₹100</span>
+            </div>
+            <hr style="border: 0.5px solid #ddd;">
+            <div style="display:flex; justify-content: space-between; font-weight: bold; font-size: 18px; color: #000; margin-top: 5px;">
+                <span>Total Amount:</span> <span id="totalAmount">₹0</span>
+            </div>
+        </div>
+
+        <div class="qr-container">
+            <p style="font-weight: bold; font-size: 14px; margin-bottom: 10px; color: #28a745;">Scan this QR to Pay:</p>
+            <img src="my-qr.jpg" alt="UPI QR Code">
+        </div>
+
+        <div class="important-note">
+            ⚠️ கவனிக்கவும்: நீங்கள் பணம் செலுத்திவிட்டால் அதன் ஸ்கிரீன்ஷாட்டை (Screenshot) கண்டிப்பாக அடுத்த பக்கத்தில் அனுப்ப வேண்டும்.
+        </div>
+        
+        <button class="whatsapp-btn" onclick="sendOrder()">Confirm & Send Screenshot via WhatsApp</button>
+        <button style="background: #666; font-size: 14px; margin-top: 10px;" onclick="showPage('page3')">Edit Details</button>
+    </div>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        function goToSummary() {
+            let name = document.getElementById("name").value;
+            let addr = document.getElementById("address").value;
+            let mob = document.getElementById("mobile").value;
+            let pcs = document.getElementById("pcs").value;
+
+            if(!name || !mob || !addr || !pcs) {
+                alert("தயவுசெய்து அனைத்து விவரங்களையும் நிரப்பவும்!");
+                return;
+            }
+
+            let itemPrice = 50;
+            let courierCharge = 100;
+            let productTotal = pcs * itemPrice;
+            let grandTotal = productTotal + courierCharge;
+            
+            document.getElementById("displayQty").innerText = pcs;
+            document.getElementById("prodPrice").innerText = "₹" + productTotal;
+            document.getElementById("totalAmount").innerText = "₹" + grandTotal;
+            
+            showPage('page4');
+        }
+
+        function sendOrder() {
+            // Order ID Generation
+            let lastNum = localStorage.getItem("orderIDCount") || 20040;
+            let nextNum = parseInt(lastNum) + 1;
+            localStorage.setItem("orderIDCount", nextNum);
+            let finalOrderID = "md" + nextNum;
+
+            let pcs = document.getElementById("pcs").value;
+            let total = document.getElementById("totalAmount").innerText;
+
+            let message = "*New Order - Payment Screenshot Attached* 📸%0A" + 
+                          "---------------------------%0A" +
+                          "*Order ID:* " + finalOrderID + "%0A" + 
+                          "---------------------------%0A" +
+                          "*Name:* " + document.getElementById("name").value + "%0A" +
+                          "*Mobile:* " + document.getElementById("mobile").value + "%0A" +
+                          "*Quantity:* " + pcs + " pcs%0A" +
+                          "*Total Paid:* " + total + " (Incl. Courier)%0A" +
+                          "---------------------------%0A" +
+                          "*Address:* " + document.getElementById("address").value + "%0A" +
+                          "---------------------------%0A" +
+                          "ஆர்டரை உறுதி செய்ய ஸ்கிரீன்ஷாட் கீழே அனுப்பியுள்ளேன்!";
+
+            // உங்கள் வாட்ஸ்அப் நம்பரை இங்கே மாற்றவும்
+            let whatsappURL = "https://wa.me/919488934686?text=" + message;
+            window.open(whatsappURL, "_blank");
+        }
+    </script>
+</body>
+</html>
