@@ -14,15 +14,13 @@
         h2 { color: #333; margin-bottom: 10px; }
         p { color: #666; font-size: 14px; }
 
-        .input-group { text-align: left; margin-bottom: 15px; }
         input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: 0.3s; }
-        input:focus { border-color: #28a745; outline: none; box-shadow: 0 0 5px rgba(40,167,69,0.2); }
+        input:focus { border-color: #28a745; outline: none; }
 
-        button, .whatsapp-btn { width: 100%; padding: 14px; background-color: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; display: block; text-decoration: none; }
+        button, .whatsapp-btn { width: 100%; padding: 14px; background-color: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; display: block; text-decoration: none; box-sizing: border-box; }
         button:hover { background-color: #218838; }
         
         .whatsapp-btn { background-color: #25D366; margin-top: 20px; }
-        .whatsapp-btn:hover { background-color: #128C7E; }
 
         .price-breakup { text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 15px; border: 1px solid #eee; }
         .important-note { color: #d9534f; font-weight: bold; font-size: 13px; margin: 15px 0; border: 1px dashed #d9534f; padding: 10px; border-radius: 5px; background: #fff5f5; }
@@ -108,7 +106,7 @@
             let pcs = document.getElementById("pcs").value;
 
             if(!name || !mob || !addr || !pcs) {
-                alert("தயவுசெய்து அனைத்து விவரங்களையும் நிரப்பவும்!");
+                alert("தயவுசெய்து முக்கியமான விவரங்களை நிரப்பவும்!");
                 return;
             }
 
@@ -131,23 +129,38 @@
             localStorage.setItem("orderIDCount", nextNum);
             let finalOrderID = "md" + nextNum;
 
+            // Details Collection
+            let name = document.getElementById("name").value;
+            let addr = document.getElementById("address").value;
+            let land = document.getElementById("landmark").value;
+            let pin = document.getElementById("pincode").value;
+            let state = document.getElementById("state").value;
+            let mob = document.getElementById("mobile").value;
+            let alt = document.getElementById("alt_mobile").value;
             let pcs = document.getElementById("pcs").value;
             let total = document.getElementById("totalAmount").innerText;
 
-            let message = "*New Order - Payment Screenshot Attached* 📸%0A" + 
+            // நீங்கள் கேட்ட புதிய வடிவமைப்பிலான மெசேஜ்
+            let message = "*New Order send!* 🛍️%0A" + 
                           "---------------------------%0A" +
                           "*Order ID:* " + finalOrderID + "%0A" + 
                           "---------------------------%0A" +
-                          "*Name:* " + document.getElementById("name").value + "%0A" +
-                          "*Mobile:* " + document.getElementById("mobile").value + "%0A" +
+                          "*Name:* " + name + "%0A" +
+                          "*Address:* " + addr + "%0A" +
+                          "*Landmark:* " + land + "%0A" +
+                          "*Pincode:* " + pin + "%0A" +
+                          "*State:* " + state + "%0A" +
+                          "*Mobile:* " + mob + "%0A" +
+                          "*Alt Mobile:* " + alt + "%0A" +
+                          "-----------------------------------%0A" +
+                          "*PAYMENT DETAILS:*%0A" +
                           "*Quantity:* " + pcs + " pcs%0A" +
                           "*Total Paid:* " + total + " (Incl. Courier)%0A" +
-                          "---------------------------%0A" +
-                          "*Address:* " + document.getElementById("address").value + "%0A" +
-                          "---------------------------%0A" +
-                          "ஆர்டரை உறுதி செய்ய ஸ்கிரீன்ஷாட் கீழே அனுப்பியுள்ளேன்!";
+                          "-----------------------------------%0A" +
+                          "ஆர்டரை உறுதி செய்ய ஸ்கிரீன்ஷாட் கீழே அனுப்பியுள்ளேன்!%0A%0A" +
+                          "*Payment Screenshot SEND* 📸%0A%0A" +
+                          "Please wait confirm this order!";
 
-            // உங்கள் வாட்ஸ்அப் நம்பரை இங்கே மாற்றவும்
             let whatsappURL = "https://wa.me/919488934686?text=" + message;
             window.open(whatsappURL, "_blank");
         }
