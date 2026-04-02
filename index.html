@@ -25,7 +25,7 @@
         .price-breakup { text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 15px; border: 1px solid #eee; }
         .important-note { color: #d9534f; font-weight: bold; font-size: 13px; margin: 15px 0; border: 1px dashed #d9534f; padding: 10px; border-radius: 5px; background: #fff5f5; }
         
-        .qr-container { margin: 20px 0; border: 2px solid #28a745; padding: 10px; border-radius: 10px; background: #fff; }
+        .qr-container { margin: 20px 0; border: 2px solid #28a745; padding: 20px; border-radius: 10px; background: #fff; }
         .qr-container img { width: 220px; height: auto; border-radius: 5px; }
     </style>
 </head>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="qr-container">
-            <p style="font-weight: bold; font-size: 14px; margin-bottom: 10px; color: #28a745;">Scan this QR to Pay:</p>
+            <p style="font-weight: bold; font-size: 14px; margin-bottom: 15px; color: #28a745;">Scan this QR to Pay:</p>
             <img src="https://drive.google.com/thumbnail?id=1PCKyQm8wjsezzi-rAg3dAs_akvIg2lWl&sz=w500" alt="UPI QR Code">
         </div>
 
@@ -123,13 +123,11 @@
         }
 
         function sendOrder() {
-            // Order ID Generation
             let lastNum = localStorage.getItem("orderIDCount") || 20040;
             let nextNum = parseInt(lastNum) + 1;
             localStorage.setItem("orderIDCount", nextNum);
             let finalOrderID = "md" + nextNum;
 
-            // Details Collection
             let name = document.getElementById("name").value;
             let addr = document.getElementById("address").value;
             let land = document.getElementById("landmark").value;
@@ -140,7 +138,6 @@
             let pcs = document.getElementById("pcs").value;
             let total = document.getElementById("totalAmount").innerText;
 
-            // நீங்கள் கேட்ட அதே வாட்ஸ்அப் மெசேஜ் டிசைன்
             let message = "*New Order send!* 🛍️%0A" + 
                           "---------------------------%0A" +
                           "*Order ID:* " + finalOrderID + "%0A" + 
