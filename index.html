@@ -58,14 +58,12 @@
         <input type="number" id="mobile" placeholder="Mobile Number">
         <input type="number" id="alt_mobile" placeholder="Alternative Number">
         <input type="number" id="pcs" placeholder="How many pcs" value="1">
-        
         <button onclick="goToSummary()">Next to Payment</button>
     </div>
 
     <div id="page4" class="page">
         <div style="font-size: 30px;">💳</div>
         <h2>Payment Details</h2>
-        
         <div class="price-breakup">
             <div style="display:flex; justify-content: space-between; margin-bottom: 5px;">
                 <span>Product (₹50 x <span id="displayQty">0</span>):</span> <span id="prodPrice">₹0</span>
@@ -81,7 +79,7 @@
 
         <div class="qr-container">
             <p style="font-weight: bold; font-size: 14px; margin-bottom: 15px; color: #28a745;">Scan this QR to Pay:</p>
-            <img src="https://drive.google.com/thumbnail?id=1etNjhf_ZqMETMU-ncajL4rChtBkSv29n/view?usp=drivesdk&sz=w500" alt="UPI QR Code">
+            <img src="https://drive.google.com/thumbnail?id=1PCKyQm8wjsezzi-rAg3dAs_akvIg2lWl&sz=w500" alt="UPI QR Code">
         </div>
 
         <div class="important-note">
@@ -104,21 +102,12 @@
             let addr = document.getElementById("address").value;
             let mob = document.getElementById("mobile").value;
             let pcs = document.getElementById("pcs").value;
-
-            if(!name || !mob || !addr || !pcs) {
-                alert("தயவுசெய்து முக்கியமான விவரங்களை நிரப்பவும்!");
-                return;
-            }
-
-            let itemPrice = 50;
-            let courierCharge = 100;
-            let productTotal = pcs * itemPrice;
-            let grandTotal = productTotal + courierCharge;
-            
+            if(!name || !mob || !addr || !pcs) { alert("விவரங்களை நிரப்பவும்!"); return; }
+            let productTotal = pcs * 50;
+            let grandTotal = productTotal + 100;
             document.getElementById("displayQty").innerText = pcs;
             document.getElementById("prodPrice").innerText = "₹" + productTotal;
             document.getElementById("totalAmount").innerText = "₹" + grandTotal;
-            
             showPage('page4');
         }
 
@@ -128,38 +117,39 @@
             localStorage.setItem("orderIDCount", nextNum);
             let finalOrderID = "md" + nextNum;
 
-            let name = document.getElementById("name").value;
-            let addr = document.getElementById("address").value;
-            let land = document.getElementById("landmark").value;
-            let pin = document.getElementById("pincode").value;
-            let state = document.getElementById("state").value;
-            let mob = document.getElementById("mobile").value;
-            let alt = document.getElementById("alt_mobile").value;
-            let pcs = document.getElementById("pcs").value;
-            let total = document.getElementById("totalAmount").innerText;
+            let details = {
+                name: document.getElementById("name").value,
+                addr: document.getElementById("address").value,
+                land: document.getElementById("landmark").value,
+                pin: document.getElementById("pincode").value,
+                state: document.getElementById("state").value,
+                mob: document.getElementById("mobile").value,
+                alt: document.getElementById("alt_mobile").value,
+                pcs: document.getElementById("pcs").value,
+                total: document.getElementById("totalAmount").innerText
+            };
 
             let message = "*New Order send!* 🛍️%0A" + 
                           "---------------------------%0A" +
                           "*Order ID:* " + finalOrderID + "%0A" + 
                           "---------------------------%0A" +
-                          "*Name:* " + name + "%0A" +
-                          "*Address:* " + addr + "%0A" +
-                          "*Landmark:* " + land + "%0A" +
-                          "*Pincode:* " + pin + "%0A" +
-                          "*State:* " + state + "%0A" +
-                          "*Mobile:* " + mob + "%0A" +
-                          "*Alt Mobile:* " + alt + "%0A" +
+                          "*Name:* " + details.name + "%0A" +
+                          "*Address:* " + details.addr + "%0A" +
+                          "*Landmark:* " + details.land + "%0A" +
+                          "*Pincode:* " + details.pin + "%0A" +
+                          "*State:* " + details.state + "%0A" +
+                          "*Mobile:* " + details.mob + "%0A" +
+                          "*Alt Mobile:* " + details.alt + "%0A" +
                           "-----------------------------------%0A" +
                           "*PAYMENT DETAILS:*%0A" +
-                          "*Quantity:* " + pcs + " pcs%0A" +
-                          "*Total Paid:* " + total + " (Incl. Courier)%0A" +
+                          "*Quantity:* " + details.pcs + " pcs%0A" +
+                          "*Total Paid:* " + details.total + " (Incl. Courier)%0A" +
                           "-----------------------------------%0A" +
                           "ஆர்டரை உறுதி செய்ய ஸ்கிரீன்ஷாட் கீழே அனுப்பியுள்ளேன்!%0A%0A" +
                           "*Payment Screenshot SEND* 📸%0A%0A" +
                           "Please wait confirm this order!";
 
-            let whatsappURL = "https://wa.me/919488934686?text=" + message;
-            window.open(whatsappURL, "_blank");
+            window.open("https://wa.me/919488934686?text=" + message, "_blank");
         }
     </script>
 </body>
