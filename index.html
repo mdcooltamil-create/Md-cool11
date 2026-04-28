@@ -3,154 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Shop - Order Page</title>
+    <title>Checkout Page - Dhayu Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; margin: 0; }
-        .page { display: none; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 380px; margin: 20px auto; animation: fadeIn 0.5s; }
-        #page1 { display: block; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        h2 { color: #333; margin-bottom: 10px; }
-        p { color: #666; font-size: 14px; }
-
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: 0.3s; }
-        input:focus { border-color: #28a745; outline: none; }
-
-        button, .whatsapp-btn { width: 100%; padding: 14px; background-color: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; display: block; text-decoration: none; box-sizing: border-box; }
-        button:hover { background-color: #218838; }
-        
-        .whatsapp-btn { background-color: #25D366; margin-top: 20px; }
-
-        .price-breakup { text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 15px; border: 1px solid #eee; }
-        .important-note { color: #d9534f; font-weight: bold; font-size: 13px; margin: 15px 0; border: 1px dashed #d9534f; padding: 10px; border-radius: 5px; background: #fff5f5; }
-        
-        .qr-container { margin: 20px 0; border: 2px solid #28a745; padding: 20px; border-radius: 10px; background: #fff; }
-        .qr-container img { width: 220px; height: auto; border-radius: 5px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <div id="page1" class="page">
-        <div style="font-size: 50px;">🛍️</div>
-        <h2>Welcome to Our Shop</h2>
-        <p>Best Products at Low Price</p>
-        <button onclick="showPage('page2')">View Product</button>
-    </div>
+    <div class="max-w-6xl mx-auto p-4 md:p-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            
+            <div class="order-2 md:order-1">
+                <h2 class="text-2xl font-semibold mb-6">தொடர்பு விவரங்கள்</h2>
+                
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">மின்னஞ்சல் அல்லது போன் எண்</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
 
-    <div id="page2" class="page">
-        <div style="font-size: 50px;">📦</div>
-        <h2>Product Details</h2>
-        <p><strong>Item:</strong> MAR MOUTH Cill</p>
-        <p><strong>Price:</strong> ₹50 per piece</p>
-        <p>+ Courier Charges Add next </p>
-        <button onclick="showPage('page3')">Order Now</button>
-    </div>
+                    <h2 class="text-2xl font-semibold mt-8 mb-4">டெலிவரி முகவரி</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="முதல் பெயர்" class="p-3 border border-gray-300 rounded-md">
+                        <input type="text" placeholder="இனிஷியல் / கடைசி பெயர்" class="p-3 border border-gray-300 rounded-md">
+                    </div>
 
-    <div id="page3" class="page">
-        <div style="font-size: 30px;">🧾</div>
-        <h2>Enter Details</h2>
-        <input type="text" id="name" placeholder="Name">
-        <input type="text" id="address" placeholder="Full Address">
-        <input type="text" id="landmark" placeholder="Landmark">
-        <input type="number" id="pincode" placeholder="Pincode">
-        <input type="text" id="state" placeholder="State">
-        <input type="number" id="mobile" placeholder="Mobile Number">
-        <input type="number" id="alt_mobile" placeholder="Alternative Number">
-        <input type="number" id="pcs" placeholder="How many pcs" value="1">
-        <button onclick="goToSummary()">Next to Payment</button>
-    </div>
+                    <input type="text" placeholder="முகவரி (Address)" class="w-full p-3 border border-gray-300 rounded-md">
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <input type="text" placeholder="நகரம்" class="p-3 border border-gray-300 rounded-md">
+                        <input type="text" placeholder="மாநிலம்" class="p-3 border border-gray-300 rounded-md">
+                        <input type="text" placeholder="பின்கோடு" class="p-3 border border-gray-300 rounded-md">
+                    </div>
 
-    <div id="page4" class="page">
-        <div style="font-size: 30px;">💳</div>
-        <h2>Payment Details</h2>
-        <div class="price-breakup">
-            <div style="display:flex; justify-content: space-between; margin-bottom: 5px;">
-                <span>Product (₹50 x <span id="displayQty">0</span>):</span> <span id="prodPrice">₹0</span>
+                    <div class="mt-8">
+                        <h2 class="text-2xl font-semibold mb-4">பணம் செலுத்தும் முறை</h2>
+                        <div class="border border-gray-300 rounded-md p-4 bg-white">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="payment" checked class="h-4 w-4 text-blue-600">
+                                <span>ஆன்லைன் பேமெண்ட் / UPI (Razorpay)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-black text-white text-xl font-bold py-4 rounded-md hover:bg-gray-800 transition mt-6">
+                        ஆர்டர் செய் (Pay Now)
+                    </button>
+                </form>
             </div>
-            <div style="display:flex; justify-content: space-between; color: #555; margin-bottom: 5px;">
-                <span>Courier Charges:</span> <span>₹100</span>
-            </div>
-            <hr style="border: 0.5px solid #ddd;">
-            <div style="display:flex; justify-content: space-between; font-weight: bold; font-size: 18px; color: #000; margin-top: 5px;">
-                <span>Total Amount:</span> <span id="totalAmount">₹0</span>
-            </div>
-        </div>
 
-        <div class="qr-container">
-            <p style="font-weight: bold; font-size: 14px; margin-bottom: 15px; color: #28a745;">Scan this QR to Pay:</p>
-            <img src="https://drive.google.com/thumbnail?id=1etNjhf_ZqMETMU-ncajL4rChtBkSv29n&sz=w500" alt="UPI QR Code">
-        </div>
+            <div class="order-1 md:order-2 bg-gray-100 p-6 rounded-lg h-fit">
+                <div class="flex items-center justify-between border-b pb-4 mb-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/60" alt="Product" class="rounded-md border">
+                            <span class="absolute -top-2 -right-2 bg-gray-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">1</span>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">உங்களின் தயாரிப்பு பெயர்</p>
+                            <p class="text-sm text-gray-500">அளவு: XL</p>
+                        </div>
+                    </div>
+                    <p class="font-semibold">₹1,299.00</p>
+                </div>
 
-        <div class="important-note">
-            ⚠️ கவனிக்கவும்: நீங்கள் பணம் செலுத்திவிட்டால் அதன் ஸ்கிரீன்ஷாட்டை (Screenshot) கண்டிப்பாக அடுத்த பக்கத்தில் அனுப்ப வேண்டும்.
+                <div class="space-y-2 border-b pb-4 mb-4">
+                    <div class="flex justify-between text-gray-600">
+                        <span>துணைத் தொகை (Subtotal)</span>
+                        <span>₹1,299.00</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>டெலிவரி கட்டணம்</span>
+                        <span class="text-green-600 font-medium">இலவசம்</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between text-xl font-bold">
+                    <span>மொத்தம் (Total)</span>
+                    <span>₹1,299.00</span>
+                </div>
+            </div>
+
         </div>
-        
-        <button class="whatsapp-btn" onclick="sendOrder()">Confirm & Send Screenshot via WhatsApp</button>
-        <button style="background: #666; font-size: 14px; margin-top: 10px;" onclick="showPage('page3')">Edit Details</button>
     </div>
 
-    <script>
-        function showPage(id) {
-            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-            window.scrollTo(0,0);
-        }
-
-        function goToSummary() {
-            let name = document.getElementById("name").value;
-            let addr = document.getElementById("address").value;
-            let mob = document.getElementById("mobile").value;
-            let pcs = document.getElementById("pcs").value;
-            if(!name || !mob || !addr || !pcs) { alert("விவரங்களை நிரப்பவும்!"); return; }
-            let productTotal = pcs * 50;
-            let grandTotal = productTotal + 100;
-            document.getElementById("displayQty").innerText = pcs;
-            document.getElementById("prodPrice").innerText = "₹" + productTotal;
-            document.getElementById("totalAmount").innerText = "₹" + grandTotal;
-            showPage('page4');
-        }
-
-        function sendOrder() {
-            let lastNum = localStorage.getItem("orderIDCount") || 20040;
-            let nextNum = parseInt(lastNum) + 1;
-            localStorage.setItem("orderIDCount", nextNum);
-            let finalOrderID = "md" + nextNum;
-
-            let details = {
-                name: document.getElementById("name").value,
-                addr: document.getElementById("address").value,
-                land: document.getElementById("landmark").value,
-                pin: document.getElementById("pincode").value,
-                state: document.getElementById("state").value,
-                mob: document.getElementById("mobile").value,
-                alt: document.getElementById("alt_mobile").value,
-                pcs: document.getElementById("pcs").value,
-                total: document.getElementById("totalAmount").innerText
-            };
-
-            let message = "*New Order send!* 🛍️%0A" + 
-                          "---------------------------%0A" +
-                          "*Order ID:* " + finalOrderID + "%0A" + 
-                          "---------------------------%0A" +
-                          "*Name:* " + details.name + "%0A" +
-                          "*Address:* " + details.addr + "%0A" +
-                          "*Landmark:* " + details.land + "%0A" +
-                          "*Pincode:* " + details.pin + "%0A" +
-                          "*State:* " + details.state + "%0A" +
-                          "*Mobile:* " + details.mob + "%0A" +
-                          "*Alt Mobile:* " + details.alt + "%0A" +
-                          "-----------------------------------%0A" +
-                          "*PAYMENT DETAILS:*%0A" +
-                          "*Quantity:* " + details.pcs + " pcs%0A" +
-                          "*Total Paid:* " + details.total + " (Incl. Courier)%0A" +
-                          "-----------------------------------%0A" +
-                          "ஆர்டரை உறுதி செய்ய ஸ்கிரீன்ஷாட் கீழே அனுப்பியுள்ளேன்!%0A%0A" +
-                          "*Payment Screenshot SEND* 📸%0A%0A" +
-                          "Please wait confirm this order!";
-
-            window.open("https://wa.me/919488934686?text=" + message, "_blank");
-        }
-    </script>
 </body>
 </html>
