@@ -3,156 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order System - MAR Mouth Chill</title>
+    <title>MD SHOP - MAR Mouth Chill</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .page { display: none; }
-        .active { display: block; }
-        body { background-color: #f8fafc; font-family: sans-serif; }
+        .btn-primary { background-color: #083D49; color: white; }
+        .hidden { display: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body class="p-4">
+<body class="bg-gray-100 font-sans text-gray-900">
 
-    <div id="page1" class="page active max-w-md mx-auto bg-white rounded-2xl shadow-lg overflow-hidden mt-5">
-        <img src="https://lh3.googleusercontent.com/d/1tN6yf9RvKK7ClMlFwKgq-m-WkhVQE_kt" class="w-full h-64 object-cover" alt="Product Image">
+    <header class="bg-white border-b p-4 text-center sticky top-0 z-50">
+        <h1 class="text-2xl font-black tracking-tighter text-teal-900">MD SHOP</h1>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 bg-white min-h-screen shadow-2xl">
         
-        <div class="p-6">
-            <h1 class="text-2xl font-bold mb-2">MAR Mouth Chill</h1>
-            <p class="text-blue-600 font-bold mb-4">Price: ₹50 / per piece</p>
-
-            <div class="bg-gray-50 p-4 rounded-xl mb-6 flex items-center justify-between border">
-                <span class="text-sm font-semibold">எண்ணிக்கை (Quantity):</span>
-                <input type="number" id="p1_qty" value="1" min="1" class="w-16 p-2 border rounded-lg text-center font-bold">
+        <div id="page1">
+            <div class="relative mb-6">
+                <img src="https://drive.google.com/thumbnail?id=1tN6yf9RvKK7ClMlFwKgq-m-WkhVQE_kt&sz=w1000" alt="Product" class="w-full rounded-2xl shadow-md">
+                <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Limited Stock</span>
             </div>
 
-            <div class="text-[11px] text-gray-500 bg-yellow-50 p-4 rounded-lg border border-yellow-100 mb-6 leading-relaxed">
-                <p class="font-bold text-gray-700 mb-1">நிபந்தனைகள் / Disclaimer:</p>
-                1. இந்த பொருட்கள் தரமான முறையில் பேக் செய்யப்பட்டுள்ளது.<br>
-                2. ஆர்டர் செய்த 24 மணிநேரத்தில் கொரியர் செய்யப்படும்.<br>
-                3. டெலிவரிக்கு உங்கள் பகுதிக்கு ஏற்ப 2-4 நாட்கள் ஆகும்.<br>
-                4. பார்சலை பிரிக்கும்போது வீடியோ எடுப்பது கட்டாயம்.<br>
-                5. சேதமடைந்த பொருட்கள் இருந்தால் வீடியோ ஆதாரத்துடன் அணுகவும்.<br>
-                6. கேஷ் ஆன் டெலிவரி வசதி தற்போது இல்லை.<br>
-                7. ஆன்லைன் பேமெண்ட் மட்டுமே ஏற்றுக்கொள்ளப்படும்.<br>
-                8. தவறான முகவரிக்கு நிறுவனம் பொறுப்பேற்காது.<br>
-                9. ஒருமுறை ஆர்டர் செய்தால் ரத்து செய்ய முடியாது.<br>
-                10. எங்களை நம்பி ஆர்டர் செய்தமைக்கு மிக்க நன்றி.
-            </div>
-
-            <button onclick="showPage('page2')" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700">Buy Product</button>
-        </div>
-    </div>
-
-    <div id="page2" class="page max-w-md mx-auto bg-white rounded-2xl shadow-lg p-6 mt-5">
-        <h2 class="text-xl font-bold mb-6 border-b pb-2">Delivery Details</h2>
-        <div class="space-y-4">
-            <input type="text" id="name" placeholder="Customer Name" class="w-full p-3 border rounded-lg outline-none focus:border-blue-500">
-            <input type="text" id="street" placeholder="Street name" class="w-full p-3 border rounded-lg">
-            <input type="text" id="landmark" placeholder="Landmark" class="w-full p-3 border rounded-lg">
-            <input type="text" id="district" placeholder="District" class="w-full p-3 border rounded-lg">
-            <input type="text" id="state" placeholder="State" class="w-full p-3 border rounded-lg">
-            <input type="number" id="pincode" placeholder="Pincode" class="w-full p-3 border rounded-lg">
-            <input type="tel" id="mobile" placeholder="Mobile Number" class="w-full p-3 border rounded-lg">
-            <input type="tel" id="alt_mobile" placeholder="Alternative Number" class="w-full p-3 border rounded-lg">
+            <h2 class="text-xl font-bold mb-1 leading-tight">MAR Mouth Chill - Pack of 5 (Minimum Order)</h2>
+            <p class="text-3xl font-black text-teal-800 mb-6">Rs. 250 <span class="text-xs font-normal text-gray-500">(Rs. 50 per packet)</span></p>
             
-            <div class="flex gap-2">
-                <button onclick="showPage('page1')" class="w-1/3 bg-gray-100 py-3 rounded-lg font-bold text-gray-600">Back</button>
-                <button onclick="calculateAndShowPage3()" class="w-2/3 bg-blue-600 text-white py-3 rounded-lg font-bold">Next Step</button>
+            <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl mb-6 border border-teal-100">
+                <div class="flex flex-col">
+                    <span class="font-bold">எண்ணிக்கை:</span>
+                    <span class="text-[10px] text-red-500 font-bold italic">Min. 5 Packets required</span>
+                </div>
+                <div class="flex items-center border-2 border-teal-800 rounded-full px-4 py-1 bg-white">
+                    <button onclick="changeQty(-1)" class="text-2xl px-2 font-bold text-teal-800">−</button>
+                    <span id="displayQty" class="mx-6 font-black text-xl">5</span>
+                    <button onclick="changeQty(1)" class="text-2xl px-2 font-bold text-teal-800">+</button>
+                </div>
+            </div>
+
+            <button onclick="showPage(2)" class="w-full btn-primary py-5 rounded-2xl font-black text-lg mb-8 shadow-xl transform active:scale-95 transition uppercase tracking-widest">BUY NOW</button>
+            
+            <div class="border-t pt-6 text-sm text-gray-600 leading-relaxed">
+                <h3 class="font-bold text-gray-800 mb-3 text-base underline decoration-teal-500">தயாரிப்பு சிறப்பம்சங்கள்:</h3>
+                <ul class="space-y-2 list-none">
+                    <li>✅ உடனடி புத்துணர்ச்சி தரும் இயற்கை மூலப்பொருள்.</li>
+                    <li>✅ வாய் துர்நாற்றத்தை முழுமையாக நீக்குகிறது.</li>
+                    <li>✅ புகையிலை மற்றும் நிக்கோட்டின் அற்றது (Safe).</li>
+                    <li>✅ ஒரு பாக்கெட்டின் விலை ₹50 மட்டுமே.</li>
+                    <li>✅ நீண்ட நேரம் நீடிக்கும் புத்துணர்ச்சி மணம்.</li>
+                    <li>✅ செரிமானத்திற்கு மிகவும் உதவியாக இருக்கும்.</li>
+                    <li>✅ தரமான முறையில் பேக்கிங் செய்யப்பட்டுள்ளது.</li>
+                    <li>✅ இந்தியாவின் நம்பகமான தயாரிப்பு.</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div id="page3" class="page max-w-md mx-auto bg-white rounded-2xl shadow-lg p-6 mt-5">
-        <h2 class="text-xl font-bold mb-6 border-b pb-2">Payment Details</h2>
-        
-        <div class="bg-gray-50 p-6 rounded-2xl space-y-4 mb-4 border">
-            <div class="flex justify-between text-sm">
-            <div class="flex justify-between text-sm">
-                <span id="total_items_label">1 pis 50 rs : total items price (1):</span>
-                <span id="total_price_val" class="font-bold text-blue-600">₹50</span>
-            </div>
+        <div id="page2" class="hidden">
+            <h2 class="text-2xl font-bold mb-6 border-b-4 border-teal-800 inline-block">Delivery Details</h2>
+            <div class="space-y-4 mt-4">
+                <input type="text" id="custName" class="w-full border-2 p-4 rounded-xl outline-teal-700 bg-gray-50" placeholder="Customer Name">
+                <textarea id="custAddr" class="w-full border-2 p-4 rounded-xl outline-teal-700 bg-gray-50 h-24" placeholder="Street Name / Full Address"></textarea>
+                <input type="text" id="custLand" placeholder="Landmark" class="w-full border-2 p-4 rounded-xl outline-teal-700 bg-gray-50">
                 
-            <div class="flex justify-between text-sm border-t pt-2">
-                <span>Shipping charge:</span>
-                <span class="font-bold">₹100</span>
+                <div class="flex gap-2">
+                    <input type="number" id="custPin" placeholder="Pincode" class="w-1/2 border-2 p-4 rounded-xl outline-teal-700 bg-gray-50">
+                    <input type="text" id="custDist" placeholder="District" class="w-1/2 border-2 p-4 rounded-xl outline-teal-700 bg-gray-50">
+                </div>
+                
+                <select id="custState" onchange="toggleOtherState()" class="w-full border-2 p-4 rounded-xl outline-teal-700 bg-white font-bold">
+                    <option value="Tamil Nadu">Tamil Nadu (Courier ₹60)</option>
+                    <option value="Other">Other States (Courier ₹80)</option>
+                </select>
+
+                <div id="otherStateDiv" class="hidden">
+                    <input type="text" id="otherStateName" placeholder="Enter State Name" class="w-full border-2 p-4 rounded-xl outline-teal-700 border-orange-400 bg-orange-50">
+                </div>
+
+                <input type="tel" id="custPhone" placeholder="Mobile Number" class="w-full border-2 p-4 rounded-xl outline-teal-700 bg-gray-50">
+                <input type="tel" id="custAltPhone" placeholder="Alternative Number" class="w-full border-2 p-4 rounded-xl outline-teal-700 bg-gray-50">
+                
+                <button onclick="calculateAndShowPayment()" class="w-full btn-primary py-5 rounded-2xl font-black text-lg shadow-lg mt-4">NEXT (PAYMENT)</button>
             </div>
         </div>
 
-        <div class="space-y-3">
-            <button onclick="sendToWhatsApp()" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-md">
-                WhatsApp மூலம் ஆர்டர் செய் 🛍️
+        <div id="page3" class="hidden text-center">
+            <h2 class="text-2xl font-bold mb-6">Payment Page</h2>
+            
+            <div class="bg-teal-900 text-white p-8 rounded-3xl mb-8 shadow-inner">
+                <p class="text-teal-200 text-sm mb-1 uppercase tracking-widest">Total Amount</p>
+                <p id="finalAmountText" class="text-5xl font-black mb-2">₹310</p>
+                <p id="breakupText" class="text-xs opacity-70">(Product + Courier)</p>
+            </div>
+
+            <button type="button" onclick="document.getElementById('qrArea').classList.toggle('hidden')" class="w-full border-2 border-teal-800 text-teal-800 py-4 rounded-2xl font-bold mb-6 hover:bg-teal-50 transition active:scale-95">
+                ஆன்லைனில் பணம் செலுத்த (G-Pay / QR) கிளிக் செய்யவும்
             </button>
-            <button onclick="showPage('page2')" class="w-full text-blue-600 font-semibold py-2">
-                Edit Details
+
+            <div id="qrArea" class="hidden mb-10">
+                <p class="mb-4 text-sm font-bold text-gray-500 uppercase tracking-widest">Scan this QR Code</p>
+                <div class="inline-block bg-white p-6 rounded-[2.5rem] shadow-2xl border-[6px] border-teal-900 relative">
+                    <img src="https://drive.google.com/thumbnail?id=1MCEMJwHch1p5dcmcJm5EKPp8YRomOBZe&sz=w800" class="w-64 h-64 mx-auto mb-6 object-contain">
+                    <div class="bg-teal-900 text-white p-5 rounded-2xl">
+                        <p class="font-black text-xl tracking-tight uppercase">MAR MOUTH CHILL</p>
+                        <p class="text-[10px] opacity-70 uppercase tracking-[0.3em] mt-1">MD SHOP Official</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-red-50 border-2 border-dashed border-red-600 rounded-2xl mx-2">
+                    <p class="text-red-700 font-bold text-sm leading-relaxed">
+                        ⚠️ நீங்கள் இந்த ஸ்கேனர் மூலம் பணம் அனுப்பினால் கண்டிப்பாக ஸ்கிரீன்ஷாட் அனுப்ப வேண்டும். அப்பொழுதுதான் உங்கள் ஆர்டர் ஏற்றுக்கொள்ளப்படும்.
+                    </p>
+                    <p class="text-red-600 font-bold text-xs mt-2 italic uppercase">
+                        If you pay via this QR scanner, you MUST send the payment screenshot. Only then your order will be accepted.
+                    </p>
+                </div>
+            </div>
+            
+            <button onclick="finalSubmitAndWhatsApp()" id="submitBtn" class="w-full btn-primary py-6 rounded-full font-black text-xl uppercase tracking-widest shadow-2xl transform active:scale-90 transition-all">
+                CONFIRM & SEND WHATSAPP
             </button>
+            
+            <p class="text-gray-400 text-[10px] mt-6 italic">🌜Kindly Wait My Reply🌛</p>
         </div>
 
-        <div class="mt-6 border-t pt-6 text-sm text-gray-700 bg-gray-50 p-4 rounded-xl">
-            <p class="font-bold text-red-600 mb-2">⚠️ Important Message:</p>
-            <p>1 Pouch Is 50 Rs. Full box 1200. One box in 24 pcs... (1 pouch la 20 pillows).</p>
-            <div class="mt-3 space-y-1">
-                <p>❌ NO CASH ON DELIVERY</p>
-                <p>✅ ONLINE PAYMENT ONLY</p>
-                <p>🚚 Delivery: 2 to 3 days.</p>
-            </div>
+        <div id="pageSuccess" class="hidden text-center py-20">
+            <div class="text-8xl mb-6 animate-bounce">🎉</div>
+            <h2 class="text-3xl font-black text-teal-900 uppercase">ORDER SENT!</h2>
+            <p class="text-gray-600 mt-4 px-6">விபரங்கள் வாட்ஸ்அப் மூலம் அனுப்பப்பட்டுள்ளது.</p>
         </div>
-    </div>
+
+    </main>
 
     <script>
-        let finalQty = 1;
-        let finalTotal = 0;
+        let currentQty = 5; 
+        let totalToPay = 0;
 
-        function showPage(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+        function changeQty(val) {
+            if (currentQty + val >= 5) {
+                currentQty += val;
+                document.getElementById('displayQty').innerText = currentQty;
+            }
+        }
+
+        function toggleOtherState() {
+            const state = document.getElementById('custState').value;
+            document.getElementById('otherStateDiv').classList.toggle('hidden', state !== 'Other');
+        }
+
+        function calculateAndShowPayment() {
+            const state = document.getElementById('custState').value;
+            const courier = (state === "Tamil Nadu") ? 60 : 80;
+            const productPrice = currentQty * 50; 
+            totalToPay = productPrice + courier;
+            
+            document.getElementById('finalAmountText').innerText = "₹" + totalToPay;
+            document.getElementById('breakupText').innerText = `(Product ₹${productPrice} + Courier ₹${courier})`;
+            showPage(3);
+        }
+
+        function showPage(p) {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.add('hidden');
+            document.getElementById('page'+p).classList.remove('hidden');
             window.scrollTo(0,0);
         }
 
-        function calculateAndShowPage3() {
-            finalQty = document.getElementById('p1_qty').value;
-            if(!document.getElementById('name').value || !document.getElementById('mobile').value) {
-                alert("Please fill Name and Mobile number");
-                return;
-            }
-            
-            let itemPrice = finalQty * 50;
-            finalTotal = itemPrice + 100;
+        function finalSubmitAndWhatsApp() {
+            const scriptURL = 'உங்களின்_APPS_SCRIPT_URL'; 
+            const btn = document.getElementById('submitBtn');
+            const myWhatsApp = '9488934686'; // உங்கள் வாட்ஸ்அப் எண் இங்கே
 
-        
-            document.getElementById('total_items_label').innerText = `1 pis 50 rs : total items price (${finalQty}):`;
-            document.getElementById('total_price_val').innerText = `₹${itemPrice}`;
-            
-            showPage('page3');
-        }
+            btn.innerText = "SENDING...";
+            btn.disabled = true;
 
-        function sendToWhatsApp() {
-            const name = document.getElementById('name').value;
-            const street = document.getElementById('street').value;
-            const landmark = document.getElementById('landmark').value;
-            const district = document.getElementById('district').value;
-            const state = document.getElementById('state').value;
-            const pin = document.getElementById('pincode').value;
-            const phone = document.getElementById('mobile').value;
-            const alt = document.getElementById('alt_mobile').value;
+            const data = {
+                name: document.getElementById('custName').value,
+                address: document.getElementById('custAddr').value,
+                landmark: document.getElementById('custLand').value,
+                pincode: document.getElementById('custPin').value,
+                district: document.getElementById('custDist').value,
+                state: document.getElementById('custState').value,
+                otherStateName: document.getElementById('otherStateName').value || "",
+                phone: document.getElementById('custPhone').value,
+                altPhone: document.getElementById('custAltPhone').value,
+                qty: currentQty,
+                totalAmount: totalToPay
+            };
 
-            const message = `*New Order send!* 🛍️%0A` +
-                `    ---------------------------%0A` +
-                `*Customer Name:* ${name}%0A` +
-                `*Street name:* ${street}%0A` +
-                `*Landmark:* ${landmark}%0A` +
-                `*District:* ${district}%0A` +
-                `*State:* ${state}%0A` +
-                `*Pincode:* ${pin}%0A` +
-                `*Mobile Number:* ${phone}%0A` +
-                `*Alternative Number:* ${alt}%0A` +
-                `      ---------------------------------%0A` +
-                `*How many pis:* ${finalQty}%0A` +
-                `*Total Amount:* ₹${finalTotal} (Incl. Courier)%0A` +
-                `----------------------------%0A` +
-                `🌜Kindly Wait My Repl🌛`;
+            const formData = new FormData();
+            for (let key in data) { formData.append(key, data[key]); }
 
-            // Replace with your number
-            window.open(`https://wa.me/919488934686?text=${message}`, '_blank');
+            fetch(scriptURL, { method: 'POST', body: formData })
+            .then(() => {
+                let finalState = data.state === "Other" ? data.otherStateName : data.state;
+                let msg = `*New Order send!* 🛍️\n---------------------------\n*Customer Name:* ${data.name}\n*Street name:* ${data.address}\n*Landmark:* ${data.landmark}\n*District:* ${data.district}\n*State:* ${finalState}\n*Pincode:* ${data.pincode}\n*Mobile Number:* ${data.phone}\n*Alternative Number:* ${data.altPhone}\n---------------------------------\n*How many pis:* ${data.qty}\n*Total Amount:* ₹${data.totalAmount} (Incl. Courier)\n----------------------------\n🌜Kindly Wait My Reply🌛`;
+                
+                window.location.href = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(msg)}`;
+                
+                document.getElementById('page3').classList.add('hidden');
+                document.getElementById('pageSuccess').classList.remove('hidden');
+            })
+            .catch(() => {
+                alert("Error! Please try again.");
+                btn.disabled = false;
+                btn.innerText = "CONFIRM & SEND WHATSAPP";
+            });
         }
     </script>
 </body>
