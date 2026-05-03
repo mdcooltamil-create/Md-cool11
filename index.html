@@ -41,18 +41,16 @@
                 </div>
             </div>
 
-            <button onclick="showPage(2)" class="w-full btn-primary py-5 rounded-2xl font-black text-lg mb-8 shadow-xl transform active:scale-95 transition uppercase tracking-widest">BUY NOW</button>
+            <button id="mainBuyBtn" onclick="showPage(2)" class="w-full btn-primary py-5 rounded-2xl font-black text-lg mb-8 shadow-xl transform active:scale-95 transition uppercase tracking-widest">BUY NOW</button>
             
             <div class="border-t pt-6 text-sm text-gray-600 leading-relaxed">
                 <h3 class="font-bold text-gray-800 mb-3 text-base underline decoration-teal-500">தயாரிப்பு சிறப்பம்சங்கள்:</h3>
                 <ul class="space-y-2 list-none">
                     <li>✅ உடனடி புத்துணர்ச்சி தரும் இயற்கை மூலப்பொருள்.</li>
                     <li>✅ வாய் துர்நாற்றத்தை முழுமையாக நீக்குகிறது.</li>
-                    <li>✅ புகையிலை மற்றும் நிக்கோட்டின் அற்றது (Safe).</li>
+                    <li>✅ புகையிலை மற்றும் நிக்கோட்டின் அற்றது.</li>
                     <li>✅ ஒரு பாக்கெட்டின் விலை ₹50 மட்டுமே.</li>
                     <li>✅ நீண்ட நேரம் நீடிக்கும் புத்துணர்ச்சி மணம்.</li>
-                    <li>✅ செரிமானத்திற்கு மிகவும் உதவியாக இருக்கும்.</li>
-                    <li>✅ தரமான முறையில் பேக்கிங் செய்யப்பட்டுள்ளது.</li>
                     <li>✅ இந்தியாவின் நம்பகமான தயாரிப்பு.</li>
                 </ul>
             </div>
@@ -87,7 +85,7 @@
         </div>
 
         <div id="page3" class="hidden text-center">
-            <h2 class="text-2xl font-bold mb-6">Payment Page</h2>
+            <h2 class="text-2xl font-bold mb-6 text-teal-900 uppercase">Payment Page</h2>
             
             <div class="bg-teal-900 text-white p-8 rounded-3xl mb-8 shadow-inner">
                 <p class="text-teal-200 text-sm mb-1 uppercase tracking-widest">Total Amount</p>
@@ -100,7 +98,7 @@
             </button>
 
             <div id="qrArea" class="hidden mb-10">
-                <p class="mb-4 text-sm font-bold text-gray-500 uppercase tracking-widest">Scan this QR Code</p>
+                <p class="mb-4 text-sm font-bold text-gray-500 uppercase tracking-widest text-center">Scan this QR Code</p>
                 <div class="inline-block bg-white p-6 rounded-[2.5rem] shadow-2xl border-[6px] border-teal-900 relative">
                     <img src="https://drive.google.com/thumbnail?id=1MCEMJwHch1p5dcmcJm5EKPp8YRomOBZe&sz=w800" class="w-64 h-64 mx-auto mb-6 object-contain">
                     <div class="bg-teal-900 text-white p-5 rounded-2xl">
@@ -122,7 +120,6 @@
             <button onclick="finalSubmitAndWhatsApp()" id="submitBtn" class="w-full btn-primary py-6 rounded-full font-black text-xl uppercase tracking-widest shadow-2xl transform active:scale-90 transition-all">
                 CONFIRM & SEND WHATSAPP
             </button>
-            
             <p class="text-gray-400 text-[10px] mt-6 italic">🌜Kindly Wait My Reply🌛</p>
         </div>
 
@@ -137,6 +134,14 @@
     <script>
         let currentQty = 5; 
         let totalToPay = 0;
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyssZ_DyV9xV926km3x8tb3cK04QpoNcMdZMvvjRqUOh9BxxyIcAmwBlIfAI3K6-MXx/exec';
+        const myWhatsApp = '9488934686';
+
+        // ஸ்டாக் இருக்கிறதா என்று செக் செய்தல்
+        function checkInventory() {
+            // ஒரு சாதாரண GET Request மூலம் ஸ்டாக்கை மட்டும் செக் செய்யலாம்
+            // உங்கள் Apps Script doGet() சப்போர்ட் செய்தால் இது வேலை செய்யும்
+        }
 
         function changeQty(val) {
             if (currentQty + val >= 5) {
@@ -165,15 +170,13 @@
             document.getElementById('page1').classList.add('hidden');
             document.getElementById('page2').classList.add('hidden');
             document.getElementById('page3').classList.add('hidden');
+            document.getElementById('pageSuccess').classList.add('hidden');
             document.getElementById('page'+p).classList.remove('hidden');
             window.scrollTo(0,0);
         }
 
         function finalSubmitAndWhatsApp() {
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyssZ_DyV9xV926km3x8tb3cK04QpoNcMdZMvvjRqUOh9BxxyIcAmwBlIfAI3K6-MXx/exec'; 
             const btn = document.getElementById('submitBtn');
-            const myWhatsApp = '9488934686';
-
             btn.innerText = "SENDING...";
             btn.disabled = true;
 
@@ -195,14 +198,20 @@
             for (let key in data) { formData.append(key, data[key]); }
 
             fetch(scriptURL, { method: 'POST', body: formData })
-            .then(() => {
+            .then(res => res.text())
+            .then(response => {
+                if(response === "OUT_OF_STOCK") {
+                    alert("மன்னிக்கவும்! தற்போது இருப்பு இல்லை (Out of Stock).");
+                    location.reload();
+                    return;
+                }
+                
                 let finalState = data.state === "Other" ? data.otherStateName : data.state;
                 let msg = `*New Order send!* 🛍️\n---------------------------\n*Customer Name:* ${data.name}\n*Street name:* ${data.address}\n*Landmark:* ${data.landmark}\n*District:* ${data.district}\n*State:* ${finalState}\n*Pincode:* ${data.pincode}\n*Mobile Number:* ${data.phone}\n*Alternative Number:* ${data.altPhone}\n---------------------------------\n*How many pis:* ${data.qty}\n*Total Amount:* ₹${data.totalAmount} (Incl. Courier)\n----------------------------\n🌜Kindly Wait My Reply🌛`;
                 
                 window.location.href = `https://wa.me/${myWhatsApp}?text=${encodeURIComponent(msg)}`;
                 
-                document.getElementById('page3').classList.add('hidden');
-                document.getElementById('pageSuccess').classList.remove('hidden');
+                showPage('Success');
             })
             .catch(() => {
                 alert("Error! Please try again.");
